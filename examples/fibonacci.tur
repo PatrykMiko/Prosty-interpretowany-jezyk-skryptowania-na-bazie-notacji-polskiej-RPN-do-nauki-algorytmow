@@ -1,0 +1,21 @@
+fn fib n {
+  if le $n 1 {
+    return $n
+  }
+  set $a 0
+  set $b 1
+  set $i 2
+  while le $i $n {
+    set $next add $a $b
+    set $a $b
+    set $b $next
+    set $i add $i 1
+  }
+  return $b
+}
+
+set $i 0
+while le $i 10 {
+  println "fib(" $i ") =" call fib 1 $i
+  set $i add $i 1
+}

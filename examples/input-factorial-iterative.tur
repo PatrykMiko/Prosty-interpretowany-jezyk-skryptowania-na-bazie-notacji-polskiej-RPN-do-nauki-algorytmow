@@ -1,0 +1,12 @@
+; iterative factorial with user input
+println "Enter n:"
+set $n int read
+
+set $result 1
+set $i 2
+while le $i $n {
+  set $result mul $result $i
+  set $i add $i 1
+}
+
+println "factorial(" $n ") =" $result

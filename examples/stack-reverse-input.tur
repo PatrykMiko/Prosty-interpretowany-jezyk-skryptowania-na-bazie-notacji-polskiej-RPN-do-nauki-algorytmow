@@ -1,0 +1,16 @@
+; reads n integers and prints them in reverse order using stack
+println "How many numbers?"
+set $n int read
+
+set $st stack
+set $i 0
+while lt $i $n {
+  println "number #" add $i 1 ":"
+  push $st int read
+  set $i add $i 1
+}
+
+println "Reversed order:"
+while not isempty $st {
+  println pop $st
+}

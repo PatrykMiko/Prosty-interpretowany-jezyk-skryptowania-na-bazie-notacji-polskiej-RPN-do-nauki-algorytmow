@@ -1,0 +1,6 @@
+node_modules/
+src/generated/
+*.interp
+*.tokens
+examples/*-ast.json
+extensions/*.js

@@ -1,0 +1,37 @@
+set $arr array
+push $arr 7
+push $arr 4
+push $arr 9
+push $arr 1
+
+set $i 0
+while lt $i size $arr {
+  set $j 0
+  while lt $j sub sub size $arr $i 1 {
+    set $left aget $arr $j
+    set $right aget $arr add $j 1
+    if gt $left $right {
+      aset $arr $j $right
+      aset $arr add $j 1 $left
+    }
+    set $j add $j 1
+  }
+  set $i add $i 1
+}
+
+println "sorted array:" $arr
+
+set $st stack
+push $st "A"
+push $st "B"
+println "stack pop:" pop $st pop $st
+
+set $q queue
+enqueue $q "first"
+enqueue $q "second"
+println "queue dequeue:" dequeue $q dequeue $q
+
+set $counts dict
+dset $counts "alice" 3
+dset $counts "bob" 2
+println "dict alice:" dget $counts "alice" "dict bob:" dget $counts "bob"

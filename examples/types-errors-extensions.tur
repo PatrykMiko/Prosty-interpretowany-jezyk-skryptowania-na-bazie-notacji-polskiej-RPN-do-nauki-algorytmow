@@ -1,0 +1,28 @@
+println "=== typed add ==="
+set $n add 2 3
+set $s add "ala" " ma kota"
+set $b add bigint "9007199254740993" bigint "7"
+println "n:" $n "type:" type $n
+println "s:" $s "type:" type $s
+println "b:" $b "type:" type $b
+
+println "=== go-style error check ==="
+set $r extcall safe_div 2 10 0
+if iserror $r {
+  println "safe_div error:" errmsg $r
+}
+else {
+  println "safe_div result:" $r
+}
+
+set $p extcall panic 0
+if iserror $p {
+  println "panic converted to error:" errmsg $p
+}
+
+println "=== custom object type from ts extension ==="
+set $p1 extcall make_point 2 3 4
+set $p2 extcall make_point 2 1 2
+set $p3 invoke $p1 add 1 $p2
+println "p3 type:" type $p3
+println "p3 norm:" invoke $p3 norm 0

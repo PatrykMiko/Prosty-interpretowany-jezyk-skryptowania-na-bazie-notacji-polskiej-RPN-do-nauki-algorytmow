@@ -1,0 +1,25 @@
+; Josephus problem using queue:
+; n players in circle, every k-th player is removed
+println "Enter n:"
+set $n int read
+println "Enter k:"
+set $k int read
+
+set $q queue
+set $i 1
+while le $i $n {
+  enqueue $q $i
+  set $i add $i 1
+}
+
+println "Elimination order:"
+while gt size $q 1 {
+  set $cnt 1
+  while lt $cnt $k {
+    enqueue $q dequeue $q
+    set $cnt add $cnt 1
+  }
+  println dequeue $q
+}
+
+println "Winner:" dequeue $q
