@@ -4,3 +4,5 @@ src/generated/
 *.tokens
 examples/*-ast.json
 extensions/*.js
+src/
+extensions/

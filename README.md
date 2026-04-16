@@ -1,4 +1,4 @@
-# Projekt: Tur-ANTLR - język algorytmiczny (RPN/prefix)
+# Projekt: Tur-ANTLR - język algorytmiczny (PN/prefix)
 
 ## Dane projektu
 
@@ -10,7 +10,7 @@
 ## Założenia programu
 
 ### Opis
-Tur-ANTLR to tekstowy język algorytmiczny oparty o składnię prefix (RPN-like): komenda stoi na początku, argumenty po niej.  
+Tur-ANTLR to tekstowy język algorytmiczny oparty o składnię prefix (PN-like): komenda stoi na początku, argumenty po niej.  
 Język wspiera pętle, warunki, funkcje i struktury danych używane w klasycznych zadaniach algorytmicznych.
 
 ### Cele
@@ -44,11 +44,17 @@ println "y =" $y
 | Token | Wzorzec | Opis |
 |---|---|---|
 | `VAR` | `\$[a-zA-Z_][a-zA-Z_0-9]*` | referencja zmiennej |
-| `IDENT` | `[a-zA-Z_][a-zA-Z_0-9]*` | nazwa komendy / identyfikator |
+| `WHILE` | `while` | słowo kluczowe pętli while |
+| `IF` | `if` | słowo kluczowe warunku |
+| `ELSE` | `else` | gałąź alternatywna warunku |
+| `FN` | `fn` | definicja funkcji |
+| `FOR` | `for` | słowo kluczowe pętli for |
+| `IDENT` | `[a-zA-Z_][a-zA-Z_0-9]*` | identyfikator (nazwa komendy/funkcji/parametru) |
 | `NUMBER` | `-?[0-9]+(\\.[0-9]+)?` | liczba |
 | `STRING` | `"..."` | napis |
 | `LBRACE` / `RBRACE` | `{` / `}` | granice bloku |
 | `NEWLINE` | `\n` | koniec instrukcji |
+| `WS` | `[ \t]+` | białe znaki (pomijane) |
 | `COMMENT` | `;...` | komentarz linii |
 
 ## Gramatyka
@@ -61,7 +67,7 @@ Pełna gramatyka znajduje się w:
 
 - Arytmetyka: `add sub mul div mod neg`
 - Porównania/logika: `eq neq lt le gt ge and or not`
-- Zmienne i sterowanie: `set while if else fn call return`
+- Zmienne i sterowanie: `set while for if else fn call return`
 - Typy i błędy: `type error iserror errmsg`
 - I/O i konwersje: `print println read int float bigint str bool len`
 - Struktury: `stack queue array dict`
@@ -114,7 +120,7 @@ Wbudowane typy runtime:
 
 Typy można sprawdzać komendą `type`, np. `type $x`.
 
-### Obsługa błędów (styl Go)
+### Obsługa błędów 
 
 Funkcja/komenda może zwracać wartość `error` zamiast przerywać programu.
 
